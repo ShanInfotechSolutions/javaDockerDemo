@@ -43,19 +43,38 @@
   </dependencies>
 
    <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.0</version>
-            <configuration>
-                <archive>
-                    <manifest>
-                        <mainClass>com.shanInfotech.dockerIntegratingDemo.App</mainClass>
-                    </manifest>
-                </archive>
-            </configuration>
-        </plugin>
-    </plugins>
+  <finalName>java-maven-docker-1.0-SNAPSHOT-jar-with-dependencies</finalName>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.11.0</version>
+      <configuration>
+        <release>17</release>
+      </configuration>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <version>3.4.1</version>
+      <executions>
+        <execution>
+          <phase>package</phase>
+          <goals>
+            <goal>shade</goal>
+          </goals>
+          <configuration>
+            <transformers>
+              <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                <mainClass>com.shanInfotech.dockerIntegratingDemo.App</mainClass>
+              </transformer>
+            </transformers>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
 </build>
+
 </project>
