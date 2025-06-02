@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  tools {
+    maven 'Maven_3'
+    jdk 'JDK_17'
+  }
+
   environment {
     IMAGE_NAME = "shanInfotech/dockerIntegratingDemo/java-maven-app"
     TAG = "latest"
@@ -10,23 +15,21 @@ pipeline {
     stage('Clone') {
       steps {
         git branch: 'main',
-            url: 'https://github.com/ShanInfotechSolutions/java-docker-jenkins-demo.git'
+            url: 'https://github.com/ShanInfotechSolutions/javaDockerDemo.git'
       }
     }
 
     stage('Build with Maven') {
       steps {
-        dir('javaDockerDemo') {
-          sh 'mvn clean package'
-        }
+        // No need for dir(), since pom.xml is at repo root
+        sh 'mvn clean package'
       }
     }
 
     stage('Build Docker Image') {
       steps {
-        dir('java8examples/javaPrograms/DockerIntegratingDemo') {
-          sh 'docker build -t $IMAGE_NAME:$TAG .'
-        }
+        // Dockerfile is also at the root
+        sh 'docker build -t $IMAGE_NAME:$TAG .'
       }
     }
 
