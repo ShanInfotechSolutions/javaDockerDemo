@@ -16,7 +16,7 @@ pipeline {
 
     stage('Build with Maven') {
       steps {
-        dir('java8examples/javaPrograms/DockerIntegratingDemo') {
+        dir('javaDockerDemo') {
           sh 'mvn clean package'
         }
       }
