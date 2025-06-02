@@ -7,7 +7,7 @@ pipeline {
   }
 
   environment {
-    IMAGE_NAME = "shanInfotech/dockerIntegratingDemo/java-maven-app"
+    IMAGE_NAME = "shaninfotech/dockerintegratingdemo/java-maven-app"
     TAG = "latest"
   }
 
