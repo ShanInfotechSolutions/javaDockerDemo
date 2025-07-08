@@ -2,9 +2,10 @@ pipeline {
   agent any
 
   tools {
-    maven 'Maven_3'
-    jdk 'JDK_17'
-  }
+  maven 'Maven 3.9.0'
+  jdk 'JDK_17'
+}
+
 
   environment {
     IMAGE_NAME = "shaninfotech/dockerintegratingdemo/java-maven-app"
